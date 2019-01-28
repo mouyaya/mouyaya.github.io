@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>弧形文字</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: #13E8E9;
+        }
+        .circular{
+            width: 10vw;
+            height: 10vw;
+            margin-top: 30vw;
+            margin-left: 30vw;
+        }
+        .circular path {
+            fill: none;
+        }
+        .circular svg {
+            display: block;
+            overflow: visible;
+        }
+        .circular svg text textPath{
+            word-spacing: 45px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="circular">
+    <svg viewBox="0 0 100 100">
+        <path d="M 0,50 a 50,50 0 1,1 0,1 z" id="circle" />
+        <text>
+            <textPath xlink:href="#circle">&nbsp;&nbsp;&nbsp;&nbsp;西北&nbsp;东北&nbsp;东南&nbsp;西南 </textPath>
+            <!--<textPath xlink:href="#circle">&nbsp;&nbsp; 西北&nbsp;&nbsp;&nbsp;&nbsp;东北&nbsp;&nbsp;&nbsp;&nbsp;东南&nbsp;&nbsp; &nbsp;&nbsp;西南 &nbsp;&nbsp;</textPath>-->
+        </text>
+    </svg>
+</div>
+</body>
+</html>
