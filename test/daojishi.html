@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js图片倒计时</title>
+</head>
+<body>
+<img src="../images/timeNum/0@2x.png" alt="" id="h1">
+<img src="../images/timeNum/0@2x.png" alt="" id="h2">
+<img src="../images/timeNum/0@2x.png" alt="">
+<img src="../images/timeNum/0@2x.png" alt="" id="m1">
+<img src="../images/timeNum/0@2x.png" alt="" id="m2">
+<img src="../images/timeNum/0@2x.png" alt="" >
+<img src="../images/timeNum/0@2x.png" alt="" id="s1">
+<img src="../images/timeNum/0@2x.png" alt="" id="s2">
+<script type="text/javascript">
+    //获取节点对象
+    var oH1=document.getElementById('h1');
+    var oH2=document.getElementById('h2');
+    var oM1=document.getElementById('m1');
+    var oM2=document.getElementById('m2');
+    var oS1=document.getElementById('s1');
+    var oS2=document.getElementById('s2');
+    //函数调用
+    getTime();
+    function getTime(){
+        //获取截止时间到1970年之间的毫秒数
+        var endTime=new Date('2019-01-29 12:00:00').getTime();
+        //获取当前时间到1970年之间的毫秒数
+        var  nowTime=new Date().getTime();
+        //时间差（毫秒）
+        var leftTime=endTime-nowTime;
+        //获取时分秒
+        var h=parseInt(leftTime/1000/3600);//获得剩余的小时数
+        var m=parseInt(leftTime/1000/60%60);//获得剩余的分钟
+        var s=parseInt(leftTime/1000%60);//获得剩余的秒数
+        //加零(无论是小时还是分钟还是秒数都会有单个数的时候，所以可以通过加零来让其变成两位数)
+        h=setNum(h);
+        m=setNum(m);
+        s=setNum(s);
+        //双位数变成单位数
+        var h1=h%10;
+        var h2=parseInt(h/10);
+        var m1=m%10;
+        var m2=parseInt(m/10);
+        var s1=s%10;
+        var s2=parseInt(s/10);
+        //改变图片地址(下面两种方法都可以实现图片地址的变化)
+        oH1.setAttribute('src','../images/timeNum/'+h2+'@2x.png');
+        oH2.setAttribute('src','../images/timeNum/'+h1+'@2x.png');
+        oM1.setAttribute('src','../images/timeNum/'+m2+'@2x.png');
+        oM2.setAttribute('src','../images/timeNum/'+m1+'@2x.png');
+        oS1.setAttribute('src','../images/timeNum/'+s2+'@2x.png');
+        oS2.setAttribute('src','../images/timeNum/'+s1+'@2x.png');
+        /*oH1.src='images/'+h2+'.png';
+        oH2.src='images/'+h1+'.png';
+        oM1.src='images/'+m2+'.png';
+        oM2.src='images/'+m1+'.png';
+        oS1.src='images/'+s2+'.png';
+        oS2.src='images/'+s1+'.png';*/
+        setTimeout(getTime,1000);
+    }
+    //添零函数
+    function  setNum(num){
+        if(num<10){
+            num="0"+num;
+        }
+        return num;
+    }
+</script>
+</body>
