@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>JS图片倒计时效果</title>
+    <style>
+        h3 {
+            font-size: 120px;
+            color: #D42D00;
+        }
+        .result {
+            font-size: 100px;
+        }
+    </style>
+</head>
+<body>
+<h3>距离2017国庆节剩余：</h3>
+<div class="result">
+    <!--<img src="./imgs/0.png"/>-->
+    <!--<img src="./imgs/0.png"/>天-->
+    <!--<img src="./imgs/0.png"/>-->
+    <!--<img src="./imgs/0.png"/>小时-->
+    <!--<img src="./imgs/0.png"/>-->
+    <!--<img src="./imgs/0.png"/>分-->
+    <!--<img src="./imgs/0.png"/>-->
+    <!--<img src="./imgs/0.png"/>秒-->
+    <img src="../images/timeNum/0@2x.png" alt="" id="h1">
+    <img src="../images/timeNum/0@2x.png" alt="" id="h2">
+    <img src="../images/timeNum/0@2x.png" alt="">
+    <img src="../images/timeNum/0@2x.png" alt="" id="m1">
+    <img src="../images/timeNum/0@2x.png" alt="" id="m2">
+    <img src="../images/timeNum/0@2x.png" alt="" >
+    <img src="../images/timeNum/0@2x.png" alt="" id="s1">
+    <img src="../images/timeNum/0@2x.png" alt="" id="s2">
+</div>
+<script>
+    var timer=null;
+    var odiv=document.querySelectorAll(".result");
+
+    function leftAddZero(n){
+        if(n<10){
+            return "0"+n
+        }else {
+            return ""+n
+        }
+    }
+
+    function countDown(dateObj,dom){
+        var year=dateObj.year || 2019;
+        var month=dateObj.month-1 || 1;
+        var day=dateObj.day || 29;
+        var hour=dateObj.hour || 0;
+        var minute=dateObj.minute || 0;
+        var second=dateObj.second || 0;
+        var oimgs=document.getElementsByTagName("img");
+
+        //获取标签的方法
+        timer=setInterval(function() {
+            var currentDate=new Date(); //创建一个当前日期对象
+
+            //创建目标时间
+            var targetDate=new Date(year,month,day,hour,minute,second);
+
+            //计算目标时间与当前时间的秒数
+            var dis=Math.floor((targetDate.getTime()-currentDate.getTime())/1000);
+
+            //天数
+            var tian=Math.floor(dis/(24*60*60));
+            dis=dis%(24*60*60); //除了天数外剩余秒数
+
+            //小时数
+            var xiaoshi=Math.floor(dis/3600);
+            dis=dis%3600;  //除了小时数外剩余的秒数
+
+            //分钟数
+            var fen=Math.floor(dis/60);
+
+            dis=dis%60; //除了天数，小时数，分钟数后剩余的秒数
+
+            //秒数
+            var miao=dis;
+            var strTime=leftAddZero(tian)+leftAddZero(xiaoshi)+leftAddZero(fen)+leftAddZero(miao);
+
+            for(var i=0,len=oimgs.length;i<len;i++){
+                oimgs[i].src="../images/timeNum/"+strTime[i]+"@2x.png";
+            }
+        },1000)
+    }//end
+
+    countDown({
+        year:2019,
+        month:01,
+        day:29,
+        hour:12
+    },odiv);
+</script>
+</body>
+</html>
