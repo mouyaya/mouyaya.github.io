@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文件保存</title>
+</head>
+<body>
+<button onclick="downloadJson()">导出生成json文件</button>
+<button onclick="downloadText()">导出生成文本</button>
+</body>
+<script src="../js/FileSaver.js"></script>
+<script>
+    var students = [{
+               "name": "小明1",
+                "age": "6",
+                "sex": "男",
+               "height": "60"
+        }, {
+                "name": "小明2",
+                    "age": "7",
+                   "sex": "男",
+                     "height": "70"
+            }, {
+                "name": "小明3",
+                     "age": "8",
+                   "sex": "男",
+                    "height": "80"
+             }];
+        // 导出生成json文件
+         function downloadJson() {
+                var blob = new Blob([JSON.stringify(students)], { type: "" });
+          saveAs(blob, "hello.json");
+       }
+      // 导出生成文本
+        function downloadText() {
+              var blob = new Blob([JSON.stringify(students)], { type: "text/plain;charset=utf-8" });
+                 saveAs(blob, "hello.txt");
+             }
+</script>
+</html>
