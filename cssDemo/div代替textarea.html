@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>div代替textrea</title>
+  <style>
+      .haveInput{
+          width: 100px;
+          height: 100px;
+          border: 1px solid red;
+      }
+      .haveInput:before {
+        content: attr(placeholder);
+        display: block;
+        color: #333;
+        }
+  </style>
+</head>
+
+<body>
+  <div>
+    
+    <div class='haveInput' contentEditable='true' placeholder='请输入'></div> 
+  </div>
+</body>
+
+</html>
